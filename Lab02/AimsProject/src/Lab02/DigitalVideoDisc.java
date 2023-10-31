@@ -1,14 +1,12 @@
 package Lab02;
 // Ngo_Van_Thuc_20215145
-public class DigitalVideoDisc {
-	
+public class DigitalVideoDisc {	
 	private String title;
 	private String category;
 	private String director;
 	private int length;
 	private float cost;
-	
-	
+		
 	public String getTitle() {
 		return title;
 	}
@@ -24,7 +22,6 @@ public class DigitalVideoDisc {
 	public float getCost() {
 		return cost;
 	}
-
 	
 	public DigitalVideoDisc(String title, String category, float cost) {
 		super();
