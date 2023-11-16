@@ -2,6 +2,9 @@ package Lab02;
 // Ngo_Van_Thuc_20215145
 public class DigitalVideoDisc {	
 	private String title;
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	private String category;
 	private String director;
 	private int length;
