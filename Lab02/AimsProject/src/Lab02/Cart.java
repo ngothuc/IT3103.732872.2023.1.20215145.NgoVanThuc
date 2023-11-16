@@ -100,7 +100,6 @@ public class Cart {
 			}
 		}
 		System.out.println("Can't find this disc");
-		return;
 	}
 
 	public void searchByTitle(String title) {
@@ -110,7 +109,7 @@ public class Cart {
 				return;
 			}
 		}
-		System.out.println("No match found with title" + title);
+		System.out.println("No match found with title " + title);
 	}
 
 }
