@@ -1,4 +1,8 @@
-package Lab02;
+package hust.soict.dsai.aims;
+
+import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+
 // Ngo_Van_Thuc_20215145
 public class Aims {
 
