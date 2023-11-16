@@ -10,6 +10,10 @@ public class DigitalVideoDisc {
 	private static int nbDigitalVideoDisc = 0;
 	private int id;
 
+	public int getId() {
+		return id;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -58,6 +62,17 @@ public class DigitalVideoDisc {
 		this.length = length;
 		this.cost = cost;
 		this.id = ++nbDigitalVideoDisc;
+	}
+	@Override
+	public String toString() {
+		return "DVD - " + title 
+		+ " - " + (category == null ? "Mising category" : category)
+		+ " - " + (director == null ? "Missing directory" : director) 
+		+ " - " + (length <= 0 ? "Missing length" : length);
+	}
+
+	public boolean isMatch(String title) {
+		return this.title.toLowerCase().contains(title.toLowerCase());
 	}
 	
 }
