@@ -1,4 +1,7 @@
-package Lab02;
+package hust.soict.dsai.aims.test.cart;
+
+import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
 
 public class CartTest {
     public static void main(String[] args) {

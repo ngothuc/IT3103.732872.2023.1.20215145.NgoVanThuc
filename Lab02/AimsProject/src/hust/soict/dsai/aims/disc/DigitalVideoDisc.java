@@ -1,4 +1,4 @@
-package Lab02;
+package hust.soict.dsai.aims.disc;
 // Ngo_Van_Thuc_20215145
 public class DigitalVideoDisc {	
 	private String title;
