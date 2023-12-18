@@ -1,15 +1,9 @@
-package hust.soict.dsai.aims.disc;
+package hust.soict.dsai.aims.media;
 // Ngo_Van_Thuc_20215145
-public class DigitalVideoDisc {	
-	private String title;
-	private String category;
+public class DigitalVideoDisc extends Media implements Playable{	
 	private String director;
 	private int length;
-	private float cost;
-
 	private static int nbDigitalVideoDisc = 0;
-	private int id;
-
 	public int getId() {
 		return id;
 	}
@@ -63,18 +57,30 @@ public class DigitalVideoDisc {
 		this.cost = cost;
 		this.id = ++nbDigitalVideoDisc;
 	}
+	// @Override
+	// public String toString() {
+	// 	return "DVD - " + title 
+	// 	+ " - " + (category == null ? "Mising category" : category)
+	// 	+ " - " + (director == null ? "Missing directory" : director) 
+	// 	+ " - " + (length <= 0 ? "Missing length" : length);
+	// }
+
 	@Override
-	public String toString() {
-		return "DVD - " + title 
-		+ " - " + (category == null ? "Mising category" : category)
-		+ " - " + (director == null ? "Missing directory" : director) 
-		+ " - " + (length <= 0 ? "Missing length" : length);
-	}
+    public String toString() {
+        return "DVD - " + super.toString();
+    }
+
 
 	public boolean isMatch(String title) {
 
 		return this.title.toLowerCase().contains(title.toLowerCase());
 	
+	}
+
+	@Override
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 	
 }
