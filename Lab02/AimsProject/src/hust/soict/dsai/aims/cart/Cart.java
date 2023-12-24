@@ -1,98 +1,102 @@
 package hust.soict.dsai.aims.cart;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 // Ngo_Van_Thuc_20215145
 public class Cart {
-	
+
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+
+	private ObservableList<Media> itemsOrdered;
 
 	public void addMedia(Media media) {
-		if(!itemsOrdered.contains(media)) {
-			itemsOrdered.add(media);
-			System.out.println("Media added successfully");
-		}else System.out.println("Already has this media");
+		
+		
+		itemsOrdered.add(media);
 	}
 
 	public void removeMedia(Media media) {
-		if(itemsOrdered.contains(media)) {
-			itemsOrdered.remove(media);
-			System.out.println("Media remove successfully");
-		}else System.out.println("Can't find media");
+		if (itemsOrdered.remove(media)) {
+			System.out.println("Removed " + media.toString() + " from cart.");
+		} else {
+			System.out.println("Couldn't find this item.");
+		}
 	}
-	
+
 	public float totalCost() {
         float cost = 0;
-        for (Media media : itemsOrdered) {
-            cost += media.getCost();
+        try {
+            for (Media m : itemsOrdered) {
+                cost += m.getCost();
+            }
+        } catch (Exception e) {
+            System.err.println("Error calculating total cost: " + e.getMessage());
+            e.printStackTrace();
         }
         return cost;
     }
 
-	public void print() {
-		System.out.println("***********************CART***********************");
-		System.out.println("Ordered Items: ");
-		for(Media media : itemsOrdered) {
-			System.out.println( media.toString() + " : " + media.getCost());
-		}
-		System.out.println("Total Cost: " + totalCost());
-		System.out.println("***************************************************");
-	}
-
 	public void searchById(int id) {
-		for(Media media : itemsOrdered) {
-			if(media.getId() == id) {
-				System.out.println(media.toString());
-				return;
-			}
-		}
-		System.out.println("Can't find this disc");
-	}
+        System.out.println("Search results for ID: " + id);
+        try {
+            for (Media m : itemsOrdered) {
+                if (m.getId() == id) {
+                    System.out.println(m.toString());
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error searching by ID: " + e.getMessage());
+            e.printStackTrace();
+        }
+        System.out.println("No items found.");
+    }
 
 	public void searchByTitle(String title) {
-		for(Media media : itemsOrdered) {
-			if(media.isMatch(title)) {
-				System.out.println(media.toString());
-				return;
+		boolean found = false;
+		System.out.println("Search results for keywords: " + title);
+		for (Media m : itemsOrdered) {
+			if (m.isMatch(title)) {
+				System.out.println(m.toString());
+				found = true;
 			}
 		}
-		System.out.println("No match found with title " + title);
-	}
-
-	public void printCart() {
-		for(Media media : itemsOrdered) {
-			System.out.println(media.toString());
-		}
+		if (!found)
+			System.out.println("No items found.");
 	}
 
 	public void sortByTitle() {
 		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
-		print();
 	}
 
 	public void sortByCost() {
-		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
-		printCart();
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
 	}
 
-	public static void cartMenu() {
-        System.out.println("Options: ");
-		System.out.println("--------------------------------");
-		System.out.println("1. Filter medias in cart");
-		System.out.println("2. Sort medias in cart");
-		System.out.println("3. Remove media from cart");
-		System.out.println("4. Play a media");
-		System.out.println("5. Place order");
-		System.out.println("0. Back");
-		System.out.println("--------------------------------");
-		System.out.println("Please choose a number: 0-1-2-3-4-5");
-
+	public Media fetchMedia(String title) {
+        try {
+            for (Media m : itemsOrdered) {
+                if (m.isMatch(title))
+                    return m;
+            }
+        } catch (Exception e) {
+            System.err.println("Error fetching media: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
+	public void placeOrder() {
+		itemsOrdered.clear();
+	}
 
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
 }
-

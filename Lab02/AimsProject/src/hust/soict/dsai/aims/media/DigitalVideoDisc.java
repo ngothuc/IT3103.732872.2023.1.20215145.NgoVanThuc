@@ -27,21 +27,29 @@ public class DigitalVideoDisc extends Media implements Playable{
 	public float getCost() {
 		return cost;
 	}
+
+	public DigitalVideoDisc(String title) {
+        super(title);
+    }
+
+	public DigitalVideoDisc() {
+		super();
+	}
 	
 	public DigitalVideoDisc(String title, String category, float cost) {
-		super();
+		super(category, category, cost);
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
 		this.id = ++nbDigitalVideoDisc;
 	}
-	public DigitalVideoDisc(String title) {
-		super();
+	public DigitalVideoDisc(String title, float cost) {
+		super(title, title, cost);
 		this.title = title;
 		this.id = ++nbDigitalVideoDisc;
 	}
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
-		super();
+		super(director, director, cost);
 		this.title = title;
 		this.category = category;
 		this.director = director;
@@ -49,7 +57,7 @@ public class DigitalVideoDisc extends Media implements Playable{
 		this.id = ++nbDigitalVideoDisc;
 	}
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super();
+		super(director, director, cost);
 		this.title = title;
 		this.category = category;
 		this.director = director;

@@ -3,7 +3,12 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 
 public class CompactDisc extends Disc implements Playable{
-	private String artist;
+	public CompactDisc(String title, String category, float cost) {
+        super(title, category, cost);
+        //TODO Auto-generated constructor stub
+    }
+
+    private String artist;
     private ArrayList<Track> tracks;
 
     public String getArtist() {

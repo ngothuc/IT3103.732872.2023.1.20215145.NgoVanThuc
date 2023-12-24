@@ -1,7 +1,12 @@
 package hust.soict.dsai.aims.media;
 
 public class Disc extends Media{
-    protected int length;
+    public Disc(String title, String category, float cost) {
+		super(title, category, cost);
+		//TODO Auto-generated constructor stub
+	}
+
+	protected int length;
     protected String director;
 
     public int getLength() {

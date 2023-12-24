@@ -45,19 +45,35 @@ public abstract class Media{
 	}
 
 	public Media() {
+
+	}
+
+	public Media(String title, String category, float cost) {
 		// TODO Auto-generated constructor stub
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+	}
+
+	public Media(String title) {
+		this.title = title;
 	}
 
     public boolean isMatch(String title2) {
         return false;
     }
 
-	@Override
-	public boolean equals(Object o) {
-		if(o == this) return true;
-		if(!(o instanceof Media)) return false;
-		Media media = (Media) o;
-		return title.equals(media.title);		
+	public boolean equals(Media media) {
+		try {
+			if (this.title.equals(media.getTitle()) && this.cost == media.getCost()) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} catch (ClassCastException e) {
+			e.printStackTrace();
+		}
+		return false;		
 	}
 
 	@Override
